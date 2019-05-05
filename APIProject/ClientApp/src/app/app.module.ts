@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiTestComponent } from './api-test/api-test.component';
 import { MovieService } from './api-test/movie.service';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MovieService } from './api-test/movie.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ApiTestComponent
+    ApiTestComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,6 +32,7 @@ import { MovieService } from './api-test/movie.service';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'test', component: ApiTestComponent },
+      { path: 'weather', component: WeatherComponent },
     ])
   ],
   providers: [
