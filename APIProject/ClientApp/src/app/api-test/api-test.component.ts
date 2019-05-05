@@ -8,51 +8,60 @@ import * as _ from "lodash"
   styleUrls: ['./api-test.component.css']
 })
 export class ApiTestComponent implements OnInit {
-  person : IPerson;
 
-  constructor(private http : HttpClient) { }
+  public movie: IMovie;
+  public key: string = "&apikey=fb93a790";
 
-  GetPeople() {
-    return this.http.get<IPeopleResult>("https://swapi.co/api/people/")
+  constructor(private http: HttpClient) {
+    http.get<IMovie>("https://www.omdbapi.com/?i=tt3896198" + this.key).subscribe(result => {
+      this.movie = result;
+    }, error => console.error(error));
   }
 
   ngOnInit() {
-    this.GetPerson();
-  }
-
-  GetPerson = () =>
-  {
-    //Hier krijg je een Observable terug waarop je je moet subscriben
-    this.GetPeople().subscribe(people => {
-      let index = _.random(0, people.results.length - 1)
-      this.person = people.results[index];
-    })
   }
 }
+/*
+  GetMovie = () =>
+  {
+    this.GetMovieInfo().subscribe(movieInfo => {
+      this.movie = movieInfo;
+    })
+  }
+  */
 
-  export interface IPerson {
-      name: string;
-      height: string;
-      mass: string;
-      hair_color: string;
-      skin_color: string;
-      eye_color: string;
-      birth_year: string;
-      gender: string;
-      homeworld: string;
-      films: string[];
-      species: string[];
-      vehicles: string[];
-      starships: string[];
-      created: Date;
-      edited: Date;
-      url: string;
+  export interface IRating {
+    Source: string;
+    Value: string;
   }
 
-  export interface IPeopleResult {
-      count: number;
-      next: string;
-      previous?: any;
-      results: IPerson[];
+  export interface IMovie {
+    Title: string;
+    Year: string;
+    Rated: string;
+    Released: string;
+    Runtime: string;
+    Genre: string;
+    Director: string;
+    Writer: string;
+    Actors: string;
+    Plot: string;
+    Language: string;
+    Country: string;
+    Awards: string;
+    Poster: string;
+    Ratings: IRating[];
+    Metascore: string;
+    imdbRating: string;
+    imdbVotes: string;
+    imdbID: string;
+    Type: string;
+    DVD: string;
+    BoxOffice: string;
+    Production: string;
+    Website: string;
+    Response: string;
   }
+
+
 
