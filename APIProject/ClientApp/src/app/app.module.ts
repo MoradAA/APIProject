@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiTestComponent } from './api-test/api-test.component';
+import { MovieService } from './api-test/movie.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { ApiTestComponent } from './api-test/api-test.component';
       { path: 'test', component: ApiTestComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    MovieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
