@@ -10,9 +10,9 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  GetMovie()
+  GetMovie(movie: string = "Guardians of the galaxy")
   {
-    return this.http.get<IMovie>("https://www.omdbapi.com/?i=tt3896198" + this.key)
+    return this.http.get<IMovie>("https://www.omdbapi.com/?t=" + movie + "&apikey=fb93a790")// + this.key)
   }
 }
 
