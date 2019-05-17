@@ -12,7 +12,7 @@ export class MovieService {
 
   GetMovie(movie: string = "Guardians of the galaxy")
   {
-    return this.http.get<IMovie>("https://www.omdbapi.com/?t=" + movie + "&apikey=fb93a790")// + this.key)
+    return this.http.get<IMovie>("https://www.omdbapi.com/?t=" + movie + "&apikey=fb93a790")
   }
 }
 
