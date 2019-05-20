@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { CardModule } from 'primeng/card';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -31,7 +32,8 @@ import { SerieComponent } from './serie/serie.component';
       { path: 'counter', component: CounterComponent },
       { path: 'movie', component: MovieComponent },
       { path: 'serie', component: SerieComponent },
-    ])
+    ]),
+    CardModule
   ],
   providers: [
     MovieService,

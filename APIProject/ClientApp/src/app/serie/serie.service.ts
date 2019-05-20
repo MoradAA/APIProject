@@ -13,9 +13,14 @@ export class SerieService {
   GetSerie(serie: string = "Game of thrones") {
     return this.http.get<ISerie>("https://www.omdbapi.com/?t=" + serie + "&apikey=fb93a790")
   }
+
+  GetEpisodes(season: string)
+  {
+    return this.http.get<IEpisode[]>("https://www.omdbapi.com/?t=Game%20of%20Thrones&apikey=fb93a790&Season=" + season)
+  }
 }
 
-export interface Rating {
+export interface IRating {
   Source: string;
   Value: string;
 }
@@ -35,7 +40,7 @@ export interface ISerie {
   Country: string;
   Awards: string;
   Poster: string;
-  Ratings: Rating[];
+  Ratings: IRating[];
   Metascore: string;
   imdbRating: string;
   imdbVotes: string;
@@ -43,4 +48,20 @@ export interface ISerie {
   Type: string;
   totalSeasons: string;
   Response: string;
+}
+
+export interface ISeason {
+  Title: string;
+  Season: string;
+  totalSeasons: string;
+  Episodes: IEpisode[];
+  Response: string;
+}
+
+export interface IEpisode {
+  Title: string;
+  Released: string;
+  Episode: string;
+  imdbRating: string;
+  imdbID: string;
 }

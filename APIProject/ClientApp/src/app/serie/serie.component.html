@@ -1,1 +1,52 @@
-<p>{{numberOfEpisodes}}</p>
+<div>
+  <div class="p-grid">
+    <div class="p-col" ngif="">
+      <p>Voer hier je serie in</p>
+      <input type="text" [(ngModel)]="SearchText" />
+      <button (click)="searchSerieInfo()">Zoek</button>
+
+      <br />
+      <br />
+
+      <p-card header="Serie" subheader="Number of seasons: {{numberOfSeasons}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+        <p-header>
+          <img src="{{serieImage}}">
+        </p-header>
+        <div>
+          {{seriePlot}}
+        </div>
+        <p-footer>
+          <button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em">Save</button>
+          <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary">Cancel</button>
+        </p-footer>
+      </p-card>
+    </div>
+
+    <div class="p-col" ngif="">
+      <p>Voer hier je gewenste season in</p>
+      <input type="text" [(ngModel)]="SearchSeason" />
+      <button (click)="searchEpisodes()">Zoek</button>
+
+      <br />
+      <br />
+
+      <table class='table table-striped' *ngIf="episodes">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Episode #</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let episode of episodes">
+            <td>{{ episode.Title }}</td>
+            <td>{{ episode.Episode }}</td>
+            <td>{{ episode.imdbRating }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
