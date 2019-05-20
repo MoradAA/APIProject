@@ -10,13 +10,13 @@ export class SerieService {
 
   constructor(private http: HttpClient) { }
 
-  GetSerie(serie: string = "Game of thrones") {
+  GetSerie(serie: string) {
     return this.http.get<ISerie>("https://www.omdbapi.com/?t=" + serie + "&apikey=fb93a790")
   }
 
-  GetEpisodes(season: string)
+  GetEpisodes(serie: string, season: string)
   {
-    return this.http.get<ISeason>("https://www.omdbapi.com/?t=Game%20of%20Thrones&apikey=fb93a790&Season=" + season)
+    return this.http.get<ISeason>("https://www.omdbapi.com/?t=" + serie + "&apikey=fb93a790&Season=" + season)
   }
 }
 

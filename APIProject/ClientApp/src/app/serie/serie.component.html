@@ -1,13 +1,13 @@
 <div>
   <div class="p-grid">
-    <div class="p-col" ngif="">
+    <div class="p-col">
       <p>Voer hier je serie in</p>
       <input type="text" [(ngModel)]="SearchText" />
-      <button (click)="searchSerieInfo()">Zoek</button>
+      <button pButton type="button" label="Search" (click)="searchSerieInfo()"></button>
 
       <br />
       <br />
-
+      <!--*ngIf="{{type}}='Series'"-->
       <p-card header="Serie" subheader="Number of seasons: {{numberOfSeasons}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
         <p-header>
           <img src="{{serieImage}}">
@@ -16,8 +16,8 @@
           {{seriePlot}}
         </div>
         <p-footer>
-          <button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em">Save</button>
-          <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary">Cancel</button>
+          <button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em"></button>
+          <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary"></button>
         </p-footer>
       </p-card>
     </div>
@@ -25,12 +25,12 @@
     <div class="p-col" ngif="">
       <p>Voer hier je gewenste season in</p>
       <input type="text" [(ngModel)]="SearchSeason" />
-      <button (click)="searchEpisodes()">Zoek</button>
+      <button pButton type="button" label="Search" (click)="searchEpisodes()"></button>
 
       <br />
       <br />
 
-      <table class='table table-striped' *ngIf="season.Episodes">
+      <table class='table table-striped' *ngIf="season">
         <thead>
           <tr>
             <th>Title</th>

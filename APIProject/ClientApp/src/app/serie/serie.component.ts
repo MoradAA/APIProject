@@ -6,17 +6,18 @@ import { SerieService, ISeason } from './serie.service';
   templateUrl: './serie.component.html'
 })
 export class SerieComponent {
-  public searchText: string = "Game of thrones";
+  public searchText: string;
   public searchSeason: string = "1";
 
   public numberOfSeasons: string;
   public serieImage;
   public seriePlot: string;
+  public type: string = "Series";
 
   public season: ISeason;
 
   constructor(private serieSvc: SerieService) {
-    //this.searchSerieInfo();
+    this.searchSerieInfo();
   }
 
   private searchSerieInfo() {
@@ -24,23 +25,24 @@ export class SerieComponent {
       this.numberOfSeasons = result.totalSeasons;
       this.serieImage = result.Poster;
       this.seriePlot = result.Plot;
+      this.type = result.Type;
     }, error => {
       console.error(error);
       this.numberOfSeasons = "Serie niet gevonden";
     });
   }
 
-      private searchEpisodes() {
-        this.serieSvc.GetEpisodes(this.searchSeason).subscribe(result => {
-          this.season = result;
+  private searchEpisodes() {
+    this.serieSvc.GetEpisodes(this.searchText, this.searchSeason).subscribe(result => {
+      this.season = result;
+      //console.log(this.season.Title);
     }, error => {
       console.error(error);
-      this.season.Episodes[0].Title = "Dit seizoen bestaat niet!";
+      //this.season.Episodes[0].Title = "Dit seizoen bestaat niet!";
     });
   }
 
   ngOnInit() {
-
   }
 
   get SearchText() {
@@ -57,5 +59,6 @@ export class SerieComponent {
 
   set SearchSeason(value: string) {
     this.searchSeason = value;
+
   }
 }

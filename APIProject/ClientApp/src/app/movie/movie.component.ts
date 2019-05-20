@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from './movie.service';
+import { MovieService, IMovie } from './movie.service';
 
 @Component({
   selector: 'app-movie',
@@ -8,8 +8,9 @@ import { MovieService } from './movie.service';
 })
 export class MovieComponent implements OnInit {
 
-  public Title: string;
-  public movieImage;
+  public movie: IMovie;
+  //public Title: string;
+  //public movieImage;
 
   searchText: string = "Guardians of the galaxy";
 
@@ -19,17 +20,16 @@ export class MovieComponent implements OnInit {
 
   private searchMovieInfo() {
     this.movieSvc.GetMovie(this.searchText).subscribe(result => {
-      //this.movie = result;
-      this.Title = result.Title;
-      this.movieImage = result.Poster;
+      this.movie = result;
+      //this.Title = result.Title;
+      //this.movieImage = result.Poster;
     }, error => {
       console.error(error);
-      this.Title = "Film niet gevonden";
+      this.movie.Title = "Film niet gevonden";
     });
   }
 
   ngOnInit() {
-    //this.movieSvc.GetMovie();
   }
 
   get SearchText() {
@@ -38,6 +38,5 @@ export class MovieComponent implements OnInit {
 
   set SearchText(value: string) {
     this.searchText = value;
-    this.searchMovieInfo();
   }
 }
