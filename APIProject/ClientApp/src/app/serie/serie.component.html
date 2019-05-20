@@ -30,7 +30,7 @@
       <br />
       <br />
 
-      <table class='table table-striped' *ngIf="episodes">
+      <table class='table table-striped' *ngIf="season.Episodes">
         <thead>
           <tr>
             <th>Title</th>
@@ -39,7 +39,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let episode of episodes">
+          <tr *ngFor="let episode of season.Episodes">
             <td>{{ episode.Title }}</td>
             <td>{{ episode.Episode }}</td>
             <td>{{ episode.imdbRating }}</td>

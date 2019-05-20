@@ -16,7 +16,7 @@ export class SerieService {
 
   GetEpisodes(season: string)
   {
-    return this.http.get<IEpisode[]>("https://www.omdbapi.com/?t=Game%20of%20Thrones&apikey=fb93a790&Season=" + season)
+    return this.http.get<ISeason>("https://www.omdbapi.com/?t=Game%20of%20Thrones&apikey=fb93a790&Season=" + season)
   }
 }
 

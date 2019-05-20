@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { SerieService, IEpisode } from './serie.service';
+import { SerieService, ISeason } from './serie.service';
 
 @Component({
   selector: 'app-serie',
@@ -13,7 +13,7 @@ export class SerieComponent {
   public serieImage;
   public seriePlot: string;
 
-  public episodes: IEpisode[];
+  public season: ISeason;
 
   constructor(private serieSvc: SerieService) {
     //this.searchSerieInfo();
@@ -31,10 +31,11 @@ export class SerieComponent {
   }
 
       private searchEpisodes() {
-    this.serieSvc.GetEpisodes(this.searchSeason).subscribe(result => {
-      this.episodes = result;
+        this.serieSvc.GetEpisodes(this.searchSeason).subscribe(result => {
+          this.season = result;
     }, error => {
       console.error(error);
+      this.season.Episodes[0].Title = "Dit seizoen bestaat niet!";
     });
   }
 
