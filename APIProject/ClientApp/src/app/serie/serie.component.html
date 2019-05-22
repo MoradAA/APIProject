@@ -7,9 +7,9 @@
 
       <br />
       <br />
-      <!--*ngIf="{{type}}='Series'"-->
+      
       <p-card header="Serie" subheader="Number of seasons: {{numberOfSeasons}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
-        <p-header>
+        <p-header> <!--*ngIf="SearchText.Type=='series'"-->
           <img src="{{serieImage}}">
         </p-header>
         <div>
@@ -24,7 +24,8 @@
 
     <div class="p-col" ngif="">
       <p>Voer hier je gewenste season in</p>
-      <input type="text" [(ngModel)]="SearchSeason" />
+      <p-dropdown [options]="allSeasons" [(ngModel)]="SearchSeason"></p-dropdown>
+      <!--<input type="text" [(ngModel)]="SearchSeason" />-->
       <button pButton type="button" label="Search" (click)="searchEpisodes()"></button>
 
       <br />
