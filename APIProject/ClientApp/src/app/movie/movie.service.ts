@@ -14,6 +14,11 @@ export class MovieService {
   {
     return this.http.get<IMovie>("https://www.omdbapi.com/?t=" + movie + "&apikey=fb93a790")
   }
+
+  SearchMovies(movie: string = "Guardians of the galaxy") {
+    return this.http.get<ISearch[]>("https://www.omdbapi.com/?s=" + movie + "&apikey=fb93a790")
+  }
+
 }
 
 export interface IRating {
@@ -46,5 +51,19 @@ export interface IMovie {
   BoxOffice: string;
   Production: string;
   Website: string;
+  Response: string;
+}
+
+export interface ISearch {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
+
+export interface ISearchResult {
+  Search: ISearch[];
+  totalResults: string;
   Response: string;
 }

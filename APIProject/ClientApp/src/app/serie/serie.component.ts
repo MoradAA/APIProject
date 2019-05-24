@@ -7,7 +7,7 @@ import { SerieService, ISeason } from './serie.service';
 })
 export class SerieComponent {
   public searchText: string = "Game of thrones";
-  public searchSeason: string = "1";
+  public searchSeason: number = 1;
 
   public numberOfSeasons: string;
   public serieImage;
@@ -15,7 +15,7 @@ export class SerieComponent {
   //public type: string;
 
   public season: ISeason;
-  public allSeasons: number[];
+  public allSeasons: any[] = [{ label: "Season 1 ", value: 1 }];
 
   constructor(private serieSvc: SerieService) {
     //this.searchSerieInfo();
@@ -23,11 +23,12 @@ export class SerieComponent {
 
   private searchSerieInfo() {
     this.serieSvc.GetSerie(this.searchText).subscribe(result => {
+      this.allSeasons = [];
       this.numberOfSeasons = result.totalSeasons;
       this.serieImage = result.Poster;
       this.seriePlot = result.Plot;
       for (let i = 1; i <= +this.numberOfSeasons; i++) {
-        this.allSeasons.push(i);
+        this.allSeasons.push({ label: `Season ${i} `, value: i });
       }
       console.log(this.allSeasons);
     }, error => {
@@ -58,12 +59,13 @@ export class SerieComponent {
     this.searchText = value;
   }
 
-  get SearchSeason() {
-    return this.searchSeason;
-  }
+  //get SearchSeason() {
 
-  set SearchSeason(value: string) {
-    this.searchSeason = value;
+  //  return this.searchSeason == 0 ?  1 : this.searchSeason;
+  //}
 
-  }
+  //set SearchSeason(value: number) {
+  //  this.searchSeason = value;
+
+  //}
 }
