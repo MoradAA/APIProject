@@ -8,6 +8,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
+import { CarouselModule } from 'primeng/carousel';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -41,7 +42,8 @@ import { SerieComponent } from './serie/serie.component';
     CardModule,
     ButtonModule,
     DropdownModule,
-    RatingModule
+    RatingModule,
+    CarouselModule
   ],
   providers: [
     MovieService,

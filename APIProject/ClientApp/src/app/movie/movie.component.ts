@@ -15,13 +15,14 @@ export class MovieComponent implements OnInit {
   searchMovie: string = "Batman";
 
   constructor(private movieSvc: MovieService) {
-    this.searchMovieInfo();
+    this.searchMovieInfo(this.searchText);
     //this.searchMovies();
   }
 
-  private searchMovieInfo() {
-    this.movieSvc.GetMovie(this.searchText).subscribe(result => {
+  private searchMovieInfo(searchText: string) {
+    this.movieSvc.GetMovie(searchText).subscribe(result => {
       this.movie = result;
+      console.log(searchText);
     }, error => {
       console.error(error);
       this.movie.Title = "Film niet gevonden";
