@@ -17,6 +17,8 @@ export class SerieService {
   GetEpisodes(serie: string, season: number) {
     return this.http.get<ISeason>("https://www.omdbapi.com/?t=" + serie + "&apikey=fb93a790&Season=" + season)
   }
+
+
 }
 
 export interface IRating {

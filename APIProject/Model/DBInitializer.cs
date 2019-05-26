@@ -17,7 +17,7 @@ namespace APIProject.Model
             {
                 var rating = new Rating()
                 {
-                    Value = 1
+                    Value = 5
                 };
 
                 context.Ratings.Add(rating);

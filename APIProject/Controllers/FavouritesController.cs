@@ -21,6 +21,17 @@ namespace APIProject.Controllers
             };
         }
 
+        [Route("{title}")]
+        [HttpPost]
+        public Favourite PostFavourite(string title)
+        {
+            return new Favourite()
+            {
+                //Id = id,
+                Title = title
+            };
+        }
+
         //[HttpGet]       //api/v1/favourites
         //public List<Favourite> GetAllFavourites()
         //{
