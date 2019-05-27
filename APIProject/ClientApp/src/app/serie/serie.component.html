@@ -17,7 +17,7 @@
           {{seriePlot}}
         </div>
         <p-footer>
-          <button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em"></button>
+          <button pButton type="button" (click)="postFavourite()" label="Save as favourite" icon="pi pi-check" style="margin-right: .25em"></button>
           <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary"></button>
         </p-footer>
       </p-card>
@@ -51,6 +51,6 @@
 
   <div>
     <input [(ngModel)]="value"/>
-    <button pButton type="button" (click)="post()" label="POST"></button>
+    <button pButton type="button" (click)="postRating()" label="POST"></button>
   </div>
 </div>

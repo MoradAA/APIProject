@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { SerieService, ISeason, IOwnRating } from './serie.service';
+import { SerieService, ISeason, IOwnRating, IFavourite } from './serie.service';
 
 @Component({
   selector: 'app-serie',
@@ -49,7 +49,7 @@ export class SerieComponent {
     });
   }
 
-  private post() {
+  private postRating() {
     let p: IOwnRating = {
       "value": this.value
     }
@@ -58,6 +58,14 @@ export class SerieComponent {
     this.serieSvc.PostRating(p);
   }
 
+  private postFavourite() {
+    let f: IFavourite = {
+      "title": this.searchText
+    }
+    console.log(f);
+    this.serieSvc.PostFavourite(f);
+  }
+  
   ngOnInit() {
 
   }

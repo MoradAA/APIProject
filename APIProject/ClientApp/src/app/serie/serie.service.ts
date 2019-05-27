@@ -28,11 +28,20 @@ export class SerieService {
     //  })
     //})
   }
+
+  PostFavourite(favourite: IFavourite) {
+    this.http.post("https://localhost:44320/api/v1/favourites", favourite).subscribe()
+  }
 }
 
 export interface IOwnRating {
   id?: number;
   value: number;
+}
+
+export interface IFavourite {
+  id?: number;
+  title: string;
 }
 
 export interface IRating {
