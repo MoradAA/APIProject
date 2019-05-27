@@ -12,7 +12,7 @@ namespace APIProject.Model
             //Create the db if not yet exists
             context.Database.EnsureCreated();
 
-            //Are there already books present ?
+            //Are there already ratings present ?
             if (!context.Ratings.Any())
             {
                 var rating = new Rating()
@@ -21,6 +21,18 @@ namespace APIProject.Model
                 };
 
                 context.Ratings.Add(rating);
+                context.SaveChanges();
+            }
+
+            //Are there already favourites present ?
+            if (!context.Favourites.Any())
+            {
+                var favourite = new Favourite()
+                {
+                    Title = "Lord of the rings"
+                };
+
+                context.Favourites.Add(favourite);
                 context.SaveChanges();
             }
         }

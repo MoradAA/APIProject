@@ -31,5 +31,20 @@ namespace APIProject.Controllers
             context.SaveChanges();
             return Created("", newRating);
         }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public IActionResult DeleteRating(int id)
+        {
+            var rating = context.Ratings.Find(id);
+            if (rating == null)
+            {
+                return NotFound();
+            }
+
+            context.Ratings.Remove(rating);
+            context.SaveChanges();
+            return NoContent();
+        }
     }
 }

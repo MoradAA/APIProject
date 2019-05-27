@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Rating } from 'primeng/rating';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,19 @@ export class SerieService {
     return this.http.get<ISeason>("https://www.omdbapi.com/?t=" + serie + "&apikey=fb93a790&Season=" + season)
   }
 
+  PostRating(rating: IOwnRating) {
+    this.http.post("https://localhost:44320/api/v1/ratings", rating).subscribe()
+    //  , {
+    //  headers: new HttpHeaders({
+    //    'Content-Type': 'application/json'
+    //  })
+    //})
+  }
+}
 
+export interface IOwnRating {
+  id?: number;
+  value: number;
 }
 
 export interface IRating {

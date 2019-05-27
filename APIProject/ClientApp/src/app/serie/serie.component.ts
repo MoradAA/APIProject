@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { SerieService, ISeason } from './serie.service';
+import { SerieService, ISeason, IOwnRating } from './serie.service';
 
 @Component({
   selector: 'app-serie',
@@ -16,6 +16,8 @@ export class SerieComponent {
 
   public season: ISeason;
   public allSeasons: any[] = [{ label: "Season 1 ", value: 1 }];
+
+  public value: number = 8;
 
   constructor(private serieSvc: SerieService) {
     //this.searchSerieInfo();
@@ -45,6 +47,15 @@ export class SerieComponent {
       console.error(error);
       //this.season.Episodes[0].Title = "Dit seizoen bestaat niet!";
     });
+  }
+
+  private post() {
+    let p: IOwnRating = {
+      "value": this.value
+    }
+
+    console.log(p);
+    this.serieSvc.PostRating(p);
   }
 
   ngOnInit() {
