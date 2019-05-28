@@ -22,11 +22,6 @@ export class SerieService {
 
   PostRating(rating: IOwnRating) {
     this.http.post("https://localhost:44320/api/v1/ratings", rating).subscribe()
-    //  , {
-    //  headers: new HttpHeaders({
-    //    'Content-Type': 'application/json'
-    //  })
-    //})
   }
 
   PostFavourite(favourite: IFavourite) {
@@ -37,11 +32,17 @@ export class SerieService {
 export interface IOwnRating {
   id?: number;
   value: number;
+  title: string;
 }
 
 export interface IFavourite {
   id?: number;
   title: string;
+  year: string;
+  runtime: string;
+  genre: string;
+  imdbrating: string;
+  ownrating: IOwnRating;
 }
 
 export interface IRating {

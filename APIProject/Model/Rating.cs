@@ -9,5 +9,6 @@ namespace APIProject.Model
     {
         public int Id { get; set; }
         public int Value { get; set; }
+        public string Title { get; set; }
     }
 }

@@ -17,7 +17,8 @@ namespace APIProject.Model
             {
                 var rating = new Rating()
                 {
-                    Value = 5
+                    Value = 5,
+                    Title = "The Lord of the Rings: The Fellowship of the Ring"
                 };
 
                 context.Ratings.Add(rating);
@@ -29,7 +30,12 @@ namespace APIProject.Model
             {
                 var favourite = new Favourite()
                 {
-                    Title = "Lord of the rings"
+                    Title = "The Lord of the Rings: The Fellowship of the Ring",
+                    Year = "2001",
+                    Runtime = "178",
+                    Genre = "Adventure, Drama, Fantasy",
+                    imdbRating = "8,8",
+                    
                 };
 
                 context.Favourites.Add(favourite);

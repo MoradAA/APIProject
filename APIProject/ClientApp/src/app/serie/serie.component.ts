@@ -14,10 +14,20 @@ export class SerieComponent {
   public seriePlot: string;
   //public type: string;
 
+  public title: string;
+  public year: string;
+  public runtime: string;
+  public genre: string;
+  public imdbrating: string;
+
+  public value: number = 0;
+
+  public p: IOwnRating;
+
+  public disabled: boolean = true;
+
   public season: ISeason;
   public allSeasons: any[] = [{ label: "Season 1 ", value: 1 }];
-
-  public value: number = 8;
 
   constructor(private serieSvc: SerieService) {
     //this.searchSerieInfo();
@@ -29,6 +39,15 @@ export class SerieComponent {
       this.numberOfSeasons = result.totalSeasons;
       this.serieImage = result.Poster;
       this.seriePlot = result.Plot;
+
+      this.title = result.Title;
+      this.year = result.Year;
+      this.runtime = result.Runtime;
+      this.genre = result.Genre;
+      this.imdbrating = result.imdbRating;
+
+      this.disabled = false;
+
       for (let i = 1; i <= +this.numberOfSeasons; i++) {
         this.allSeasons.push({ label: `Season ${i} `, value: i });
       }
@@ -49,18 +68,23 @@ export class SerieComponent {
     });
   }
 
-  private postRating() {
-    let p: IOwnRating = {
-      "value": this.value
+  public postRating() {
+    this.p = {
+      "value": this.value,
+      "title": this.title
     }
-
-    console.log(p);
-    this.serieSvc.PostRating(p);
+    console.log(this.p);
+    this.serieSvc.PostRating(this.p);
   }
 
   private postFavourite() {
     let f: IFavourite = {
-      "title": this.searchText
+      "title": this.title,
+      "year": this.year,
+      "runtime": this.runtime,
+      "genre": this.genre,
+      "imdbrating": this.imdbrating,
+      "ownrating": this.p
     }
     console.log(f);
     this.serieSvc.PostFavourite(f);
