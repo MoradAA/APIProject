@@ -35,7 +35,6 @@ namespace APIProject.Model
                     Runtime = "178",
                     Genre = "Adventure, Drama, Fantasy",
                     imdbRating = "8,8",
-                    
                 };
 
                 context.Favourites.Add(favourite);

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace APIProject
 {
@@ -29,12 +30,25 @@ namespace APIProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<RatingContext>(
-                options => options.UseSqlServer(
+                //Lokaal
+                //options => options.UseSqlServer(
+                //    Configuration.GetConnectionString("DefaultConnection")
+                //    )
+
+                //Google cloud SQL
+                options => options.UseMySQL(
                     Configuration.GetConnectionString("DefaultConnection")
                     )
                 );
             //services.AddMvc();
             //services.AddCors();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "https://accounts.google.com";
+                    options.Audience = "https://localhost:44320";
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -63,6 +77,7 @@ namespace APIProject
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -22,40 +22,40 @@ namespace APIProject.Controllers
             return context.Favourites.ToList();
         }
 
-        [HttpPost]
-        public IActionResult CreateFavourite([FromBody] Favourite newFavourite)
-        {
-            context.Favourites.Add(newFavourite);
-            context.SaveChanges();
-            return Created("", newFavourite);
-        }
-
-        [Route("{Id}")]
+        //Find a favourite based on the id of the favourite
+        [Route("{id}")]
         [HttpGet]
         public Favourite GetFavourite(int id)
         {
-            return new Favourite()
-            {
-                Id = id,
-                Title = ""
-            };
+            return context.Favourites.Find(id);
         }
 
-        //[Route("{title}")]
-        //[HttpPost]
-        //public Favourite PostFavourite(string title)
-        //{
-        //    return new Favourite()
-        //    {
-        //        //Id = id,
-        //        Title = title
-        //    };
-        //}
+        [Route("alphabeticalorder")]
+        [HttpGet]
+        public List<Favourite> GetFavouritesOrdened()
+        {
+            var list = context.Favourites.ToList();
+            var favouritesSortedByAlphabet = list.OrderByDescending(r => r.Title).ToList();
+            return favouritesSortedByAlphabet;
+        }
 
-        //[HttpGet]       //api/v1/favourites
-        //public List<Favourite> GetAllFavourites()
-        //{
+        [Route("bestrated")]
+        [HttpGet]
+        public List<Favourite> GetBestRatedFavourites()
+        {
+            var list = context.Favourites.ToList();
+            //lastig om te sorteren op imdbRating omdat imdbRating van type string is (+ / ParseInt werken niet)
+            var SeriesWithGoodRatings = list.Where(favourite => favourite.OwnRating.Value >= 4).ToList();
+            return SeriesWithGoodRatings;
+        }
 
-        //}
+        [HttpPost]
+        public IActionResult CreateFavourite([FromBody] Favourite newFavourite)
+        {
+            //Eerst opzoeken of er al een element bestaat met dezelfde Titleproperty? (2 favorieten met dezelfde titel vermijden)
+                context.Favourites.Add(newFavourite);
+                context.SaveChanges();
+                return Created("", newFavourite);
+        }
     }
 }

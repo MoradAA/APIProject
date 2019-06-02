@@ -1,35 +1,52 @@
 <div>
   <div class="p-grid">
+    <div class="p-col"></div>
     <div class="p-col">
-      <div class="p-grid">
-        <div class="p-col"></div>
-        <div class="p-col">
-          <div class="ui-g-12 ui-md-4">
-            <div class="ui-inputgroup">
-              <button pButton type="button" (click)="searchMovies()" label="Search"></button>
-              <input type="text" pInputText placeholder="Movie" [(ngModel)]="searchMovie">
-            </div>
-          </div>
+      <div class="ui-inputgroup">
+        <button pButton type="button" (click)="searchMovies()" label="Search"></button>
+        <input type="text" pInputText placeholder="Movie" [(ngModel)]="searchMovie">
+      </div>
+    </div>
+    <div class="p-col"></div>
+  </div>
+
+  <br />
+  <br />
+
+  <p-carousel headerText="Zoekresultaten" [value]="search.Search">
+    <ng-template let-search pTemplate="item">
+      <div class="ui-grid ui-grid-responsive">
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-6"></div>
+          <div class="ui-grid-col-6"><img src="{{search.Poster}}" width="60"></div>
+          <div class="ui-grid-col-6"></div>
         </div>
-        <div class="p-col"></div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-6">Title</div>
+          <div class="ui-grid-col-6">{{search.Title}}</div>
+        </div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-4"></div>
+          <div class="ui-grid-col-4">
+            <button type="button" pButton icon="pi pi-search" (click)="searchMovieInfo(search.Title)"></button>
+          </div>
+          <div class="ui-grid-col-4"></div>
+        </div>
       </div>
-      <div class="p-grid" *ngFor="let search of search.Search">
-        <div class="p-col"><img src="{{search.Poster}}" /></div>
-        <div class="p-col">{{search.Title}}</div>
-        <div class="p-col"><button pButton type="button" (click)="searchMovieInfo(search.Title)" label="Zoek deze film op"></button></div>
-      </div>
-    </div>
-    <div class="p-col">
-      <div class="p-grid">
-        <div class="p-col" ngif="">{{movie.Title}}</div>
-        <div class="p-col"></div>
-        <div class="p-col">Acteurs</div>
-      </div>
-      <div class="p-grid">
-        <div class="p-col" ngif=""><img src="{{movie.Poster}}" /></div>
-        <div class="p-col">{{movie.Plot}}</div>
-        <div class="p-col"></div>
-      </div>
-    </div>
+    </ng-template>
+  </p-carousel>
+
+  <br />
+  <br />
+
+  <div class="p-grid">
+    <div class="p-col"></div>
+    <div class="p-col"><h3>{{movie.Title}}</h3></div>
+    <div class="p-col"></div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col"></div>
+    <div class="p-col"><img src="{{movie.Poster}}" /></div>
+    <div class="p-col">{{movie.Plot}}</div>
   </div>
 </div>

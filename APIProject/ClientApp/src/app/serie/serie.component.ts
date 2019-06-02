@@ -68,13 +68,22 @@ export class SerieComponent {
     });
   }
 
-  public postRating() {
+  private postRating() {
     this.p = {
       "value": this.value,
       "title": this.title
     }
     console.log(this.p);
     this.serieSvc.PostRating(this.p);
+  }
+
+  private updateRating() {
+    this.p = {
+      "value": this.value,
+      "title": this.title
+    }
+    console.log(this.p);
+    this.serieSvc.UpdateRating(this.p);
   }
 
   private postFavourite() {
@@ -101,14 +110,4 @@ export class SerieComponent {
   set SearchText(value: string) {
     this.searchText = value;
   }
-
-  //get SearchSeason() {
-
-  //  return this.searchSeason == 0 ?  1 : this.searchSeason;
-  //}
-
-  //set SearchSeason(value: number) {
-  //  this.searchSeason = value;
-
-  //}
 }

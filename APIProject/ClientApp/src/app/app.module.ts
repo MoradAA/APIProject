@@ -13,7 +13,6 @@ import { CarouselModule } from 'primeng/carousel';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { MovieService } from './movie/movie.service';
 import { SerieService } from './serie/serie.service';
 import { MovieComponent } from './movie/movie.component';
@@ -24,7 +23,6 @@ import { SerieComponent } from './serie/serie.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     MovieComponent,
     SerieComponent
   ],
@@ -35,7 +33,6 @@ import { SerieComponent } from './serie/serie.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
       { path: 'movie', component: MovieComponent },
       { path: 'serie', component: SerieComponent },
     ]),

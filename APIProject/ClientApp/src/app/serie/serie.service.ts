@@ -20,10 +20,16 @@ export class SerieService {
     return this.http.get<ISeason>("https://www.omdbapi.com/?t=" + serie + "&apikey=fb93a790&Season=" + season)
   }
 
+  //Rating-actions
   PostRating(rating: IOwnRating) {
     this.http.post("https://localhost:44320/api/v1/ratings", rating).subscribe()
   }
 
+  UpdateRating(rating: IOwnRating) {
+    this.http.put("https://localhost:44320/api/v1/ratings", rating).subscribe()
+  }
+
+  //Favourite-actions
   PostFavourite(favourite: IFavourite) {
     this.http.post("https://localhost:44320/api/v1/favourites", favourite).subscribe()
   }

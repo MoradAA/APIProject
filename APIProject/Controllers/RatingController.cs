@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using APIProject.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIProject.Controllers
 {
@@ -18,10 +19,18 @@ namespace APIProject.Controllers
             this.context = context;
         }
 
+        [Authorize]
         [HttpGet]
-        public List<Rating> GetAllRatings()
+        public List<Rating> GetAllRatings(string title)
         {
-            return context.Ratings.ToList();
+            IQueryable<Rating> query = context.Ratings;
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                query = query.Where(t => t.Title == title);
+            }
+
+            return query.ToList();
+            //return context.Ratings.ToList();
         }
 
         [Route("{id}")]
@@ -52,23 +61,39 @@ namespace APIProject.Controllers
         public List<Rating> GetBestRatings()
         {
             var list = context.Ratings.ToList();
-            var SeriesWith5StarRatings = list.Where(rating => rating.Value >= 5).ToList();
+            var SeriesWith5StarRatings = list.Where(rating => rating.Value == 5).ToList();
             return SeriesWith5StarRatings;
         }
 
         [HttpPost]
         public IActionResult CreateRating([FromBody] Rating newRating)
         {
-            context.Ratings.Add(newRating);
-            context.SaveChanges();
-            return Created("", newRating);
+                context.Ratings.Add(newRating);
+                context.SaveChanges();
+                return Created("", newRating);
         }
 
-        [Route("{id}")]
+        [HttpPut]
+        public IActionResult UpdateRating([FromBody] Rating updateRating)
+        {
+            var upRating = context.Ratings.Find(updateRating.Id);
+            if (upRating == null)
+            {
+                return NotFound();
+            }
+             upRating.Value = updateRating.Value;
+             upRating.Title = updateRating.Title;
+             context.SaveChanges();
+             return Ok(upRating);
+        }
+
+        //Delete werkt niet, error: '405 HTTP Method Not Supported'
+        [Route("d/{id}")]
         [HttpDelete]
         public IActionResult DeleteRating(int id)
         {
-            var rating = context.Ratings.Find(id);
+            //var rating = context.Ratings.Find(id);
+            var rating = context.Ratings.Where(r => r.Id == id).First();
             if (rating == null)
             {
                 return NotFound();
