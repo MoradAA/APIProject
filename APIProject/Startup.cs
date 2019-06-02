@@ -31,14 +31,14 @@ namespace APIProject
         {
             services.AddDbContext<RatingContext>(
                 //Lokaal
-                //options => options.UseSqlServer(
-                //    Configuration.GetConnectionString("DefaultConnection")
-                //    )
-
-                //Google cloud SQL
-                options => options.UseMySQL(
+                options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")
                     )
+
+                //Google cloud SQL
+                //options => options.UseMySQL(
+                //    Configuration.GetConnectionString("DefaultConnection")
+                //    )
                 );
             //services.AddMvc();
             //services.AddCors();
