@@ -100,7 +100,7 @@ export class SerieComponent {
   }
 
   public deleteFavourite(id: number) {
-    id = this.deleteId;
+    console.log(id);
     this.serieSvc.DeleteFavourite(id);
   }
   

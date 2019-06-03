@@ -62,7 +62,7 @@ namespace APIProject.Controllers
         [HttpDelete]
         public IActionResult DeleteFavourite(int id)
         {
-            var favourite = context.Favourites.Where(r => r.Id == id).First();
+            var favourite = context.Favourites.Where(r => r.Id == id).FirstOrDefault();
             if (favourite == null)
             {
                 return NotFound();
