@@ -9,12 +9,13 @@ import { MovieService, IMovie, ISearchResult } from './movie.service';
 export class MovieComponent implements OnInit {
 
   public movie: IMovie;
-  public search: ISearchResult[] = [];
+  public search: ISearchResult;
 
   searchText: string = "Guardians of the galaxy";
   searchMovie: string = "Batman";
 
   constructor(private movieSvc: MovieService) {
+    this.searchMovies();
     this.searchMovieInfo(this.searchText);
   }
 

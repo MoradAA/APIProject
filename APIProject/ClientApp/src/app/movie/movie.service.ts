@@ -16,7 +16,7 @@ export class MovieService {
   }
 
   SearchMovies(movie: string = "Guardians of the galaxy") {
-    return this.http.get<ISearchResult[]>("https://www.omdbapi.com/?s=" + movie + "&apikey=fb93a790")
+    return this.http.get<ISearchResult>("https://www.omdbapi.com/?s=" + movie + "&apikey=fb93a790")
   }
 
 }
