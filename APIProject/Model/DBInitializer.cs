@@ -13,33 +13,33 @@ namespace APIProject.Model
             context.Database.EnsureCreated();
 
             //Are there already ratings present ?
-            if (!context.Ratings.Any())
-            {
-                var rating = new Rating()
-                {
-                    Value = 5,
-                    Title = "The Lord of the Rings: The Fellowship of the Ring"
-                };
+            //if (!context.Ratings.Any())
+            //{
+            //    var rating = new Rating()
+            //    {
+            //        Value = 5,
+            //        Title = "The Lord of the Rings: The Fellowship of the Ring"
+            //    };
 
-                context.Ratings.Add(rating);
-                context.SaveChanges();
-            }
+            //    context.Ratings.Add(rating);
+            //    context.SaveChanges();
+            //}
 
             //Are there already favourites present ?
-            if (!context.Favourites.Any())
-            {
-                var favourite = new Favourite()
-                {
-                    Title = "The Lord of the Rings: The Fellowship of the Ring",
-                    Year = "2001",
-                    Runtime = "178",
-                    Genre = "Adventure, Drama, Fantasy",
-                    imdbRating = "8,8",
-                };
+            //if (!context.Favourites.Any())
+            //{
+            //    var favourite = new Favourite()
+            //    {
+            //        Title = "The Lord of the Rings: The Fellowship of the Ring",
+            //        Year = "2001",
+            //        Runtime = "178",
+            //        Genre = "Adventure, Drama, Fantasy",
+            //        imdbRating = "8,8",
+            //    };
 
-                context.Favourites.Add(favourite);
-                context.SaveChanges();
-            }
+            //    context.Favourites.Add(favourite);
+            //    context.SaveChanges();
+            //}
         }
     }
 }

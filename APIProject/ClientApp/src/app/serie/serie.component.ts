@@ -33,7 +33,7 @@ export class SerieComponent {
     //this.searchSerieInfo();
   }
 
-  private searchSerieInfo() {
+  public searchSerieInfo() {
     this.serieSvc.GetSerie(this.searchText).subscribe(result => {
       this.allSeasons = [];
       this.numberOfSeasons = result.totalSeasons;
@@ -58,7 +58,7 @@ export class SerieComponent {
     });
   }
 
-  private searchEpisodes() {
+  public searchEpisodes() {
     this.serieSvc.GetEpisodes(this.searchText, this.searchSeason).subscribe(result => {
       this.season = result;
       //console.log(this.season.Title);
@@ -68,7 +68,7 @@ export class SerieComponent {
     });
   }
 
-  private postRating() {
+  public postRating() {
     this.p = {
       "value": this.value,
       "title": this.title
@@ -77,7 +77,7 @@ export class SerieComponent {
     this.serieSvc.PostRating(this.p);
   }
 
-  private updateRating() {
+  public updateRating() {
     this.p = {
       "value": this.value,
       "title": this.title
@@ -86,7 +86,7 @@ export class SerieComponent {
     this.serieSvc.UpdateRating(this.p);
   }
 
-  private postFavourite() {
+  public postFavourite() {
     let f: IFavourite = {
       "title": this.title,
       "year": this.year,
