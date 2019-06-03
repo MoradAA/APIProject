@@ -19,7 +19,7 @@ export class MovieComponent implements OnInit {
     //this.searchMovies();
   }
 
-  private searchMovieInfo(searchText: string) {
+  public searchMovieInfo(searchText: string) {
     this.movieSvc.GetMovie(searchText).subscribe(result => {
       this.movie = result;
       console.log(searchText);
@@ -39,7 +39,7 @@ export class MovieComponent implements OnInit {
     //}, 16);
   }
 
-  private searchMovies() {
+  public searchMovies() {
     this.movieSvc.SearchMovies(this.searchMovie).subscribe(result => {
       this.search = result;
       console.log(this.search);
