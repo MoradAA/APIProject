@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService, IMovie, ISearch } from './movie.service';
+import { MovieService, IMovie, ISearchResult } from './movie.service';
 
 @Component({
   selector: 'app-movie',
@@ -9,7 +9,7 @@ import { MovieService, IMovie, ISearch } from './movie.service';
 export class MovieComponent implements OnInit {
 
   public movie: IMovie;
-  public search: ISearch[] = [];
+  public search: ISearchResult[] = [];
 
   searchText: string = "Guardians of the galaxy";
   searchMovie: string = "Batman";
