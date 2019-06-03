@@ -10,7 +10,6 @@
 
       <p-card header="Serie" subheader="Number of seasons: {{numberOfSeasons}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
         <p-header>
-          <!--*ngIf="SearchText.Type=='series'"-->
           <img src="{{serieImage}}">
         </p-header>
         <div>
@@ -18,8 +17,17 @@
         </div>
         <p-footer>
           <button pButton type="button" (click)="postFavourite()" label="Save as favourite" icon="pi pi-check" style="margin-right: .25em"></button>
-          <!--<button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary"></button>-->
+
           <br />
+          <br />
+
+          <div class="ui-inputgroup">
+            <input type="text" pInputText placeholder="Favourite-ID" [(ngModel)]="deleteId">
+            <button pButton type="button" (click)="deleteFavourite()" label="Delete this favourite"></button>
+          </div>
+
+          <br />
+
           <p-rating [(ngModel)]="value" (click)="postRating()" disabled="{{disabled}}"></p-rating>
         </p-footer>
       </p-card>

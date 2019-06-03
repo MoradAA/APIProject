@@ -33,6 +33,10 @@ export class SerieService {
   PostFavourite(favourite: IFavourite) {
     this.http.post("https://localhost:44320/api/v1/favourites", favourite).subscribe()
   }
+
+  DeleteFavourite(id: number) {
+    this.http.delete("https://localhost:44320/api/v1/favourites/d/" + id).subscribe()
+  }
 }
 
 export interface IOwnRating {

@@ -26,11 +26,12 @@ export class SerieComponent {
 
   public disabled: boolean = true;
 
+  public deleteId: number;
+
   public season: ISeason;
   public allSeasons: any[] = [{ label: "Season 1 ", value: 1 }];
 
   constructor(private serieSvc: SerieService) {
-    //this.searchSerieInfo();
   }
 
   public searchSerieInfo() {
@@ -61,7 +62,6 @@ export class SerieComponent {
   public searchEpisodes() {
     this.serieSvc.GetEpisodes(this.searchText, this.searchSeason).subscribe(result => {
       this.season = result;
-      //console.log(this.season.Title);
     }, error => {
       console.error(error);
       //this.season.Episodes[0].Title = "Dit seizoen bestaat niet!";
@@ -97,6 +97,11 @@ export class SerieComponent {
     }
     console.log(f);
     this.serieSvc.PostFavourite(f);
+  }
+
+  public deleteFavourite(id: number) {
+    id = this.deleteId;
+    this.serieSvc.DeleteFavourite(id);
   }
   
   ngOnInit() {

@@ -12,6 +12,7 @@ namespace APIProject.Model
             //Create the db if not yet exists
             context.Database.EnsureCreated();
 
+            //Moest gecomment worden omdat er anders een foutmelding was ('No coercion operator is defined between types 'System.Int16' and 'System.Boolean'.')
             //Are there already ratings present ?
             //if (!context.Ratings.Any())
             //{

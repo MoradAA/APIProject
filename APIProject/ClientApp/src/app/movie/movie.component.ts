@@ -16,7 +16,6 @@ export class MovieComponent implements OnInit {
 
   constructor(private movieSvc: MovieService) {
     this.searchMovieInfo(this.searchText);
-    //this.searchMovies();
   }
 
   public searchMovieInfo(searchText: string) {
@@ -27,16 +26,6 @@ export class MovieComponent implements OnInit {
       console.error(error);
       this.movie.Title = "Film niet gevonden";
       });
-
-    ////scrolt het schrem terug naar boven
-    //let scrollToTop = window.setInterval(() => {
-    //  let pos = window.pageYOffset;
-    //  if (pos > 0) {
-    //    window.scrollTo(0, pos - 150);
-    //  } else {
-    //    window.clearInterval(scrollToTop);
-    //  }
-    //}, 16);
   }
 
   public searchMovies() {

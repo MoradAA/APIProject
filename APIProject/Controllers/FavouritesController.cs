@@ -57,5 +57,20 @@ namespace APIProject.Controllers
                 context.SaveChanges();
                 return Created("", newFavourite);
         }
+
+        [Route("d/{id}")]
+        [HttpDelete]
+        public IActionResult DeleteFavourite(int id)
+        {
+            var favourite = context.Favourites.Where(r => r.Id == id).First();
+            if (favourite == null)
+            {
+                return NotFound();
+            }
+
+            context.Favourites.Remove(favourite);
+            context.SaveChanges();
+            return NoContent();
+        }
     }
 }
